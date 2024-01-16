@@ -1,11 +1,10 @@
 from csv_diff import load_csv, compare
 import json
 
-file1 = "2024-01-09_-_Worker_and_Temporary_Worker.csv"
-file2 = "2024-01-10_-_Worker_and_Temporary_Worker.csv"
-file3_empty = "empty.csv"
+file1 = "Files/transformed_2024-01-09_-_Worker_and_Temporary_Worker.csv"
+file2 = "Files/transformed_2024-01-10_-_Worker_and_Temporary_Worker.csv"
 
-key = "Organisation Name"
+key = "Name"
 
 diff: dict[str, str] = {};
 
@@ -18,7 +17,7 @@ try:
             with open('diff.json', 'w') as f:
                 json.dump(diff, f)
             added = diff['added']
-            print(added)
+            # print(added)
     else:
         print("One of the files is empty")
 except:
@@ -28,14 +27,14 @@ except:
 print(" ADDED: ============ ============ ============ ============ ============ ============")
 for i in added:
     print(
-        f"""{i['Organisation Name']} ||| {i['Type & Rating']} ||| {i['Town/City']} ||| {i['County']} ||| {i['Route']}""")
-
+        f"""{i['Name']} ||| {i['TypeRatings']} ||| {i['TownCity']} ||| {i['County']} ||| {i['Routes']}""")
+print()
 print(" REMOVED: ============ ============ ============ ============ ============ ============")
 removed = diff['removed']
 for i in removed:
     print(
-        f"""{i['Organisation Name']} ||| {i['Type & Rating']} ||| {i['Town/City']} ||| {i['County']} ||| {i['Route']}""")
-
+        f"""{i['Name']} ||| {i['TypeRatings']} ||| {i['TownCity']} ||| {i['County']} ||| {i['Routes']}""")
+print()
 print(" CHANGED: ============ ============ ============ ============ ============ ============")
 changed = diff['changed']
 
